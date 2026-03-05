@@ -24,4 +24,8 @@ st.write("# Chatbot com IA") # Markdown
 texto_usuario = st.chat_input("Digite sua mensagem")
 
 if texto_usuario:
-    print(texto_usuario)
+    st.chat_message("user").write(texto_usuario)
+
+    resposta_ia = "Você perguntou: " + texto_usuario
+
+    st.chat_message("assistant").write(resposta_ia)
