@@ -21,11 +21,20 @@ modelo = OpenAI(api_key=OPENAI_API_KEY)
 
 st.write("# Chatbot com IA") # Markdown
 
+if not "lista_mensagem" in st.session_state:
+    st.session_state["lista_mensagem"] = []
+
 texto_usuario = st.chat_input("Digite sua mensagem")
 
 if texto_usuario:
     st.chat_message("user").write(texto_usuario)
+    mensagem_usuario = {"role": "user", "content": texto_usuario}
+    st.session_state["lista_mensagem"].append(mensagem_usuario)
 
     resposta_ia = "Você perguntou: " + texto_usuario
 
     st.chat_message("assistant").write(resposta_ia)
+    mensagem_ia = {"role": "assistant", "content": resposta_ia}
+    st.session_state["lista_mensagem"].append(mensagem_ia)
+
+print(st.session_state["lista_mensagem"])
